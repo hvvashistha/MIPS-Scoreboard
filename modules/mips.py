@@ -237,13 +237,13 @@ class Mips:
         return True
 
 # Public
-    def config(self, fileName):
+    def config(self, conf, fileName):
         lines = []
         # Setup all configurations
         with open(fileName, 'r') as file:
             for line in file:
                 lines.append(line)
-        getattr(self, "_c_" + fileName[:-4])(lines)
+        getattr(self, "_c_" + conf)(lines)
 
     def setupOutfile(self, fileName):
         self.outFile = fileName
