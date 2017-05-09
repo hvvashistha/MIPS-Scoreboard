@@ -1,8 +1,8 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import sys
-from mips import Mips
-
+from modules.mips import Mips
 
 
 def initialize():
