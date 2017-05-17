@@ -181,6 +181,7 @@ class Mips:
 
     def _fetch(self):
         lookedAhead = False
+
         if self.IcacheLookAhead:
             print 'Look Ahead',
             lookedAhead = self._cache['I-Cache'].read(self.PC, self)
@@ -190,17 +191,13 @@ class Mips:
 
         inst = self._fetchQ[0] if len(self._fetchQ) > 0 else BUSY
 
-        if inst != BUSY and inst.cmd == 'HLT':
-            if self.branchPC is not None:
-                self.PC = self.branchPC
-                self.branchPC = None
-                lookedAhead = False
+        if inst != BUSY and inst.cmd == 'HLT' and self.branchPC is None:
             if self.termPC is not None and self.termPC != self.PC:
                 self._fetchQ.pop(0)
             elif inst != BUSY:
                 return False
 
-        if inst != BUSY and inst.cmd != 'HLT':
+        if inst != BUSY and inst.cmd != 'HLT' and self.branchPC is None:
             units = self._units[Mips.InstUnits[inst.cmd]]
             unit = [unit for unit in units if not unit.Busy()]
             if len(unit) > 0 and not self.halt:
@@ -231,8 +228,15 @@ class Mips:
                 self.termPC = self.PC
 
             if self._fetchQ[0] != BUSY:
-                    print('Fetch (PC: ' + str(self.PC) + ') : ' +
-                          self._fetchQ[0].inst)
+                print('Fetch (PC: ' + str(self.PC) + ') : ' +
+                      self._fetchQ[0].inst)
+
+                if self.branchPC is not None:
+                    if len(self._fetchQ) > 0:
+                        self._fetchQ.pop(0)
+                    self._fetchQ.append(BUSY)
+                    self.PC = self.branchPC
+                    self.branchPC = None
 
         return True
 

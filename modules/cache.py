@@ -110,7 +110,7 @@ class Cache:
             if (evictBlock['dirty'] and self.missStage['stage'] == 'EVICT' and
                     self.missStage['loc'] < self.blockSize):
 
-                loc = ((tag << int(math.log(self.blockSize, 2) +
+                loc = ((evictBlock['tag'] << int(math.log(self.blockSize, 2) +
                        math.log(self.noOfSets, 2))) |
                        (index << int(math.log(self.blockSize, 2))) |
                        self.missStage['loc'])
