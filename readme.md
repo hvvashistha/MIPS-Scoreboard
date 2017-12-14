@@ -1,11 +1,23 @@
-Make Commands
+## MIPS Scoreboard Simulation
 
-To clean:
-    make clean
+This project is part of Advanced Operating Systems class at UMBC.
 
-To run:
-    make run
+[MIPS architecture](https://en.wikipedia.org/wiki/MIPS_architecture) is RISC architecutre developed by MIPS technologies.
+[Scoreboarding](https://en.wikipedia.org/wiki/Scoreboarding) is one of the strategy for dynamic processor pipeline queuing. It was developed for MIPS architecture and was employed in CDC 6600 computers/
 
+### Intructions for make file
 
-Program run:
-    python  ./simulator.py <inst.txt> <data.txt> <config.txt> <result.txt>
+To clean the directory:
+```
+make clean
+```
+
+To run the simulation:
+```
+make run
+```
+
+To run with your own configuration and data files:
+```
+python  ./simulator.py <inst.txt> <data.txt> <config.txt> <result.txt>
+```
