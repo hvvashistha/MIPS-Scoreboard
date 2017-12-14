@@ -1,6 +1,6 @@
 ## MIPS Scoreboard Simulation
 
-This project is part of Advanced Operating Systems class at UMBC.
+This project is part of Advanced Operating Systems course at UMBC.
 
 [MIPS architecture](https://en.wikipedia.org/wiki/MIPS_architecture) is RISC architecutre developed by MIPS technologies.
 [Scoreboarding](https://en.wikipedia.org/wiki/Scoreboarding) is one of the strategy for dynamic processor pipeline queuing. It was developed for MIPS architecture and was employed in CDC 6600 computers/
